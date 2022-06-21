@@ -1,8 +1,8 @@
 import machine
-from machine import Timer, Pin
 import utime
-led = Pin(0, Pin.OUT)
-btn = Pin(28, Pin.IN, Pin.PULL_DOWN)
+
+led = machine.Pin(0, machine.Pin.OUT)
+btn = machine.Pin(28, machine.Pin.IRQ_RISING)
 
 
 def btn_irq_handler(pin):
@@ -10,7 +10,9 @@ def btn_irq_handler(pin):
     print(pin)
 
 
-led.value(1)
-utime.sleep(1)
-led.value(0)
-btn.irq(trigger=machine.Pin.IRQ_RISING,handler=btn_irq_handler)
+while True:
+    print(btn.value())
+    led.value(1)
+    utime.sleep(1)
+    led.value(0)
+    btn.irq(trigger=machine.Pin.IRQ_RISING, handler=btn_irq_handler)
