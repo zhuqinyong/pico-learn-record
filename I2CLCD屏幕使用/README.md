@@ -10,16 +10,17 @@ https://wokwi.com/projects/new/micropython-pi-pico
 ```python
 import machine
 import utime
-
 potentiometer = machine.ADC(26)
-while True:
-    utime.sleep(0.5)
-    print(potentiometer.read_u16())
+led = machine.PWM(machine.Pin(15))
+led.freq(1000)
 
+while True:
+    led.duty_u16(potentiometer.read_u16())
 ```
 ***
+
+***
 ## 3.实际电路图
-![img.png](img.png)
 
 ***
 ## 4.电路图json diagram.json
@@ -36,15 +37,26 @@ while True:
       "left": -100,
       "attrs": { "env": "micropython-20220117-v1.18" }
     },
-    { "type": "wokwi-potentiometer", "id": "pot1", "top": -65.71, "left": 108.36, "attrs": {} }
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -65.71, "left": 108.36, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 86.8,
+      "left": -222.56,
+      "attrs": { "color": "red" }
+    }
   ],
   "connections": [
     [ "pot1:GND", "pico:GND.8", "black", [ "v0" ] ],
     [ "pico:3V3", "pot1:VCC", "green", [ "h0" ] ],
-    [ "pico:GP26", "pot1:SIG", "green", [ "h0" ] ]
+    [ "pico:GP26", "pot1:SIG", "green", [ "h0" ] ],
+    [ "led1:C", "pico:GND.5", "green", [ "v0" ] ],
+    [ "pico:GP15", "led1:A", "green", [ "h0" ] ]
   ]
 }
-```
+`````
 ***
 ## 5.最终结果
+![img.png](img.png)
 ![img_1.png](img_1.png)
+![img_2.png](img_2.png)
