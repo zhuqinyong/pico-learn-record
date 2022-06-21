@@ -27,6 +27,30 @@ while True:
 
 ```
 
+#### 增强版本的中断请求
+```python
+import machine
+import utime
+
+led = machine.Pin(0, machine.Pin.OUT)
+btn = machine.Pin(28, machine.Pin.IRQ_RISING)
+
+
+def btn_irq_handler(pin):
+    btn.irq(handler=None)
+    if led.value()==1:
+        led.value(0)
+    else:
+        led.value(1)
+    print(pin)
+
+
+while True:
+    utime.sleep(1)
+    btn.irq(trigger=machine.Pin.IRQ_RISING, handler=btn_irq_handler)
+
+```
+
 ## 3.实际电路图
 
 ![img.png](img.png)
@@ -64,7 +88,7 @@ while True:
   "connections": [
     [ "led1:A", "pico:GP0", "green", [ "v0" ] ],
     [ "led1:C", "pico:GND.1", "green", [ "v24.4", "h152" ] ],
-    [ "pico:GP28", "btn1:2.l", "green", [ "h0" ] ],
+    [ "pico:GP28", "btn1:2.l", "gree`n", [ "h0" ] ],
     [ "btn1:1.l", "pico:3V3_EN", "green", [ "h0" ] ]
   ]
 }
