@@ -9,13 +9,12 @@ https://wokwi.com/projects/new/micropython-pi-pico
 # 2.代码
 ```python
 import machine
-from machine import Timer, Pin
+from machine import Pin
 import utime
 led = Pin(0, Pin.OUT)
-btn = Pin(26, Pin.IN, Pin.PULL_DOWN)
+btn = Pin(28, Pin.IN, Pin.PULL_DOWN)
 
 
-# 处罚处理
 def btn_irq_handler(pin):
     btn.irq(handler=None)
     print(pin)
@@ -24,7 +23,7 @@ def btn_irq_handler(pin):
 led.value(1)
 utime.sleep(1)
 led.value(0)
-btn.irq(trigger=machine.Pin.IRQ_RISING,handler=btn_irq_handler())
+btn.irq(trigger=machine.Pin.IRQ_RISING,handler=btn_irq_handler)
 
 ```
 
