@@ -38,15 +38,15 @@ btn = machine.Pin(28, machine.Pin.IN)
 
 def btn_irq_handler(pin):
     btn.irq(handler=None)
-    if led.value()==1:
-        led.value(0)
-    else:
-        led.value(1)
+    timer_reaction = utime.ticks_diff(utime.ticks_ms(), timer_start)
+    print("Your reaction time was " + str(timer_reaction) + " milliseconds!")
+    led.toggle()
     print(pin)
 
 
 while True:
     utime.sleep(1)
+    timer_start = utime.ticks_ms()
     btn.irq(trigger=machine.Pin.IRQ_RISING, handler=btn_irq_handler)
 
 ```
