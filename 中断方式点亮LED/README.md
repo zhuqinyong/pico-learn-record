@@ -5,7 +5,7 @@
 ```angular2html
 https://wokwi.com/projects/new/micropython-pi-pico
 ```
-
+***
 # 2.代码
 ```python
 import machine
@@ -26,7 +26,7 @@ while True:
     btn.irq(trigger=machine.Pin.IRQ_RISING, handler=btn_irq_handler)
 
 ```
-
+***
 #### 增强版本的中断请求
 ```python
 import machine
@@ -50,12 +50,12 @@ while True:
     btn.irq(trigger=machine.Pin.IRQ_RISING, handler=btn_irq_handler)
 
 ```
-
+***
 ## 3.实际电路图
 
 ![img.png](img.png)
 
-
+***
 ## 4.电路图json diagram.json
 ```json
 {
@@ -93,5 +93,6 @@ while True:
   ]
 }
 ```
+***
 ## 5.最终结果
 ![img_1.png](img_1.png)
