@@ -2,7 +2,7 @@ import machine
 import utime
 
 led = machine.Pin(0, machine.Pin.OUT)
-btn = machine.Pin(28, machine.Pin.IRQ_RISING)
+btn = machine.Pin(28, machine.Pin.IN)
 
 
 def btn_irq_handler(pin):
