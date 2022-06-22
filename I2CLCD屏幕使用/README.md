@@ -18,9 +18,8 @@ while True:
     led.duty_u16(potentiometer.read_u16())
 ```
 ***
-
-***
 ## 3.实际电路图
+
 
 ***
 ## 4.电路图json diagram.json
@@ -57,6 +56,3 @@ while True:
 `````
 ***
 ## 5.最终结果
-![img.png](img.png)
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
